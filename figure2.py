@@ -141,8 +141,18 @@ for idx, loc in enumerate(locs):
         plt.semilogx(1./f,p, label='Raw ' + tr.stats.station + ' ' + tr.stats.location + ' ' + chan, alpha=0.7, linestyle='dotted', linewidth=3.5)
     per, nlnm = get_nlnm()
     per, nhnm = get_nhnm()
+    bper, bpow =[], []
+    fil = open('GSNHmodel.csv','r')
+    for line in fil:
+        line = line.strip()
+        line = line.replace(' ','')
+        line = line.split(',')
+        bper.append(float(line[0]))
+        bpow.append(float(line[1]))
+    fil.close()
     plt.semilogx(per, nlnm, color='k', linewidth=2)
     plt.semilogx(per, nhnm, color='k', linewidth=2, label='NLNM/NHNM')
+    plt.semilogx(bper, bpow, color='.7', linewidth=2, label='GSNHM')
     #plt.axvspan(1./pmin, 1./pmax, facecolor='g', alpha=0.1)
     plt.fill_between(1./f, p, pcor,color='.5')
     plt.xlabel('Period (s)')
