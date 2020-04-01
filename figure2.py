@@ -9,6 +9,8 @@ import numpy as np
 stime = UTCDateTime('2019-271T00:00:00')
 etime = stime + 1*24*60*60
 
+# This code generates figure 2 of Ringler et al. magnetic paper.
+
 import matplotlib as mpl
 mpl.rc('font',family='serif')
 mpl.rc('font',serif='Times')
