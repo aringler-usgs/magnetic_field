@@ -9,6 +9,8 @@ from obspy.core import UTCDateTime
 from scipy.signal import welch
 from matplotlib.mlab import csd
 
+# This code makes the noise estimates used in figure 3.  The figure3.py code is what does the plotting.
+
 # "Global" variables
 client = Client("IRIS")
 
