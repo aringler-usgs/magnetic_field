@@ -11,6 +11,7 @@ mpl.rc('text', usetex=True)
 mpl.rc('font',size=20)
 npzs = glob.glob('*.npz')
 
+# Code for figure 5 in the manuscript.  This does the plotting you need to grab the data and do the PDF estimates.  See the PDF code.
 
 # sensitivity is nT to V/m/s/s
 #[-2.26845802e-12 -3.99273739e-13  4.83281356e-15]
