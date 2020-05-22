@@ -15,13 +15,13 @@ import matplotlib as mpl
 mpl.rc('font',family='serif')
 mpl.rc('font',serif='Times')
 #mpl.rc('text', usetex=True)
-mpl.rc('font',size=20)
+mpl.rc('font',size=16)
 
 chans = ['LH1', 'LH2', 'LHZ']
 locs = ['10', '00']
-fig = plt.figure(2, figsize=(14,10))
+fig = plt.figure(2, figsize=(16,16))
 for idx, loc in enumerate(locs):
-    plt.subplot(2,1,idx+1)
+    plt.subplot(2,2,2*idx+1)
     for chan in chans:
 
         #net, sta, loc, chan = 'TA', 'H22K', '*', 'LHZ'
@@ -156,15 +156,37 @@ for idx, loc in enumerate(locs):
     plt.semilogx(per, nhnm, color='k', linewidth=2, label='NLNM/NHNM')
     plt.semilogx(bper, bpow, color='.7', linewidth=2, label='GSNHM')
     #plt.axvspan(1./pmin, 1./pmax, facecolor='g', alpha=0.1)
-    plt.fill_between(1./f, p, pcor,color='.5')
+    plt.fill_between(1./f, p, pcor,color='.5', alpha=0.7)
     plt.xlabel('Period (s)')
     plt.ylabel('PSD (dB rel. 1 $(m/s^2)^2/Hz$)', fontsize=16)
     plt.xlim((2., 1000.))
     plt.ylim((-190, -90))
-    plt.legend(loc=9, ncol=2, fontsize=16)
+    plt.legend(loc=9, ncol=2, fontsize=14)
     if idx == 0:
-        plt.text(1., -90, '(a)')
+        plt.text(1., -85, '(a)', fontsize=18)
     else:
-        plt.text(1., -90, '(b)')
+        plt.text(1., -85, '(c)', fontsize=18)
+
+    if chan == 'LHZ':
+        plt.subplot(2,2,2*idx+2)
+        plt.semilogx(1./f, pcor, color = 'C4', label='Corr ' + tr.stats.station + ' ' + tr.stats.location + ' ' + chan)
+        plt.semilogx(1./f,p, color = 'C5', label='Raw ' + tr.stats.station + ' ' + tr.stats.location + ' ' + chan, alpha=0.7, linestyle='dotted', linewidth=3.5)  
+        plt.semilogx(per, nlnm, color='k', linewidth=2)
+        plt.semilogx(per, nhnm, color='k', linewidth=2, label='NLNM/NHNM')
+        plt.semilogx(bper, bpow, color='.7', linewidth=2, label='GSNHM')
+        #plt.axvspan(1./pmin, 1./pmax, facecolor='g', alpha=0.1)
+        plt.fill_between(1./f, p, pcor,color='.5', alpha=0.7)
+        plt.xlabel('Period (s)')
+        plt.ylabel('PSD (dB rel. 1 $(m/s^2)^2/Hz$)', fontsize=16)
+        plt.xlim((50., 1000.))
+        plt.ylim((-190, -140))
+        #plt.legend(loc=9, ncol=2, fontsize=14)
+        if idx == 0:
+            plt.text(30., -137, '(b)', fontsize=18)
+        else:
+            plt.text(30., -137, '(d)', fontsize=18)
+
+
 plt.savefig('figure2.png', format='PNG', dpi=200)
-plt.show()
+plt.savefig('figure2.pdf', format='PDF', dpi=600)
+#plt.show()
