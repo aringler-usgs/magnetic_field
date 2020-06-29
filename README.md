@@ -14,7 +14,7 @@ Remember to change your path on line 10 in `utils.py` if you do any of your own 
 
 `calc_pdf.py` is used to estimate the PDFs from GSN magnetometer data.  You will need to change line 30 of this code so that you can put your own data path.  We have not included .npz files as they make this repository too large.  Please contact us if you would like them via ftp.
 
-`figure3.py` is used to produce Figure 3 in the manuscript.
+`figure3.py` is used to produce Figure 3 in the manuscript.  Remember to change the path in the `utils.py` file so that you can grab the metadata necessary for the calculations.
 
 `figure4.py` is used to produce Figure 4 in the manuscript.  It needs the pdfs calculatd in `calc_pdf.py`.
 
